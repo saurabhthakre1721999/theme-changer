@@ -7,8 +7,6 @@ const Home = () => {
   return (
     <div
       style={{
-        color: Theme ? "white" : "black",
-        backgroundColor: Theme ? "black" : "white",
         height: "100vh",
       }}
     >
