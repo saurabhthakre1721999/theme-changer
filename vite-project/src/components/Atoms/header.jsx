@@ -1,41 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Box, Grid, colors } from "@mui/material";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+
 import { Context } from "../usecontext/dataprovider";
+
+import "./header.css";
 
 const Header = () => {
   const { Theme, Themechanger } = useContext(Context);
+  console.log(Theme);
+
+  useEffect(() => {}, [Theme]);
   return (
-    <Box
-      style={{
-        backgroundColor: Theme ? "black" : "white",
-        height: "50px",
-      }}
-    >
+    <Box id="box" className={Theme ? "darktheme" : "lighttheme"}>
       <Grid container spacing={1} justifyContent="flex-end">
         <Grid item xs={1}>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Style style={{ color: Theme ? "white" : "black" }}>Home</Style>
+            <span theme={Theme}>Home</span>
           </Link>
         </Grid>
         <Grid item xs={1}>
           <Link to="/about" style={{ textDecoration: "none" }}>
-            <Style style={{ color: Theme ? "white" : "black" }}>About</Style>
+            <span theme={Theme}>About</span>
           </Link>
         </Grid>
         <Grid item xs={1}>
           <Link to="/contact" style={{ textDecoration: "none" }}>
-            <Style style={{ color: Theme ? "white" : "black" }}>Contact</Style>
+            <span theme={Theme}>Contact</span>
           </Link>
         </Grid>{" "}
         <Grid item xs={1}>
           <button
-            onClick={(e) => Themechanger(!Theme)}
-            style={{
-              color: Theme ? "white" : "black",
-              backgroundColor: Theme ? "black" : "white",
-            }}
+            className={Theme ? "darktheme" : "lighttheme"}
+            onClick={(e) => Themechanger((prev) => !prev)}
           >
             {" "}
             Dark
@@ -46,7 +43,3 @@ const Header = () => {
   );
 };
 export default Header;
-const Style = styled.span`
-  text-decoration: none;
-  color: Theme?"white":"black";
-`;
